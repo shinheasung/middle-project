@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Daum IT-출석부</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+        #cal {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 10vh;
+        }
+
+        #leftbtn,
+        #rightbtn {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .wrapper {
+            background: #fff;
+            padding: 25px;
+        }
+
+        .wrapper .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .wrapper .nav .current-date {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .wrapper .nav button {
+            width: 38px;
+            height: 38px;
+            font-size: 30px;
+            color: #878787;
+        }
+
+        .calendar ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .calendar .weeks li {
+            font-weight: 500;
+        }
+
+
+
+        .calendar ul li {
+            width: calc(100% / 7);
+            position: relative;
+        }
+
+        .calendar .days li {
+            z-index: 1;
+            margin-top: 20px;
+        }
+
+        .days li.inactive {
+            color: #aaa;
+        }
+
+
+        .days li.active {
+            color: #1e07ec;
+        }
+
+        .calendar .days li::before {
+            position: absolute;
+            content: '';
+            height: 40px;
+            width: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: -1;
+            
+
+        }
+
+
+        /* .days div.active::before {
+        background: #008aff;
+    } */
+
+        .days li {
+            position: relative;
+            z-index: 1;
+            margin-top: 30px;
+            /* cursor: pointer; */
+        }
+
+        .days li button {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            /* cursor: pointer; */
+        }
+
+        /* .days li button:focus {
+        outline: none;
+    } */
+
+        .days li .attendance-info {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #aaa;
+            /* 변경 가능: 총원, 출석, 결석 정보의 기본 색상 */
+        }
+
+        .days li .attendance-info div {
+            flex: 1;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .days li.active .attendance-info {
+            color: #fff;
+            /* 변경 가능: 활성화된 날짜의 총원, 출석, 결석 정보의 색상 */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Sub Header -->
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="left-content">
+                        <!-- <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="right-icons">
+                        <ul>
+                            <li id="loginLink"><a href="login.html">로그인</a></li>
+                            <li id="signupLink"><a href="signup.html">회원가입</a></li>
+                            <li id="userGreeting" style="display: none;"></li>
+                            <li id="mypageLink" style="display: none;"><a href="mypage-m.html">마이페이지</a></li>
+                            <li id="logoutLink" style="display: none">로그아웃</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index-m.html" class="logo" style="font-size: 46px;">
+                            Daum IT
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index-m.html">Home</a></li>
+                            <li class="has-sub">
+                                <a href="introduce-m.html">학원소개</a>
+                                <ul class="sub-menu">
+                                    <li><a href="introduce-m.html">학원 소개</a></li>
+                                    <li><a href="teacher-m.html">교직원 소개</a></li>
+                                    <li><a href="employment-m.html">취업현황</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="notice-m.html">공지사항</a></li>
+                            <li>
+                                <a href="community-m.html">커뮤니티</a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="FAQ-m.html">고객센터</a>
+                                <ul class="sub-menu">
+                                    <li><a href="FAQ-m.html">FAQ</a></li>
+                                    <li><a href="counsel-m.html">문의 및 상담</a></li>
+                                    <li><a href="location-m.html">오시는 길</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="calendar-m.html" class="active">출결조회</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <section class="heading-page header-text" id="top" style="background-image: url(assets/images/hd2.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>내일을 향해 나아가는 Daum IT</h6>
+                    <h2>출결조회</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="meetings-page" id="meetings">
+        <div class="container"
+            style="background-color: #ffffff; width: 100%; height: 1200px; color: #000000;  border-radius: 10px; text-align: center; ">
+            <div class="wrapper">
+                <div class="nav">
+                    <button id="leftbtn" class="material-icons"> &lt; </button>
+                    <p class="current-date"></p>
+                    <button id="rightbtn" class="material-icons"> &gt; </button>
+                </div>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>일</li>
+                        <li>월</li>
+                        <li>화</li>
+                        <li>수</li>
+                        <li>목</li>
+                        <li>금</li>
+                        <li>토</li>
+                    </ul>
+                    <ul class="days">
+
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: right; padding-right: 70px;">
+                <button id="stuListWeb"style="background-color: #4118ab; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 24px; margin: 4px 2px; cursor: pointer; border-radius: 5px; transition-duration: 0.4s;">회원 관리</button>
+                <button id="jobAdd"style="background-color: #4118ab; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 24px; margin: 4px 2px; cursor: pointer; border-radius: 5px; transition-duration: 0.4s;">취업 관리</button>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
+                <br>
+                Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                <br>
+                Distibuted By: <a href="https://themewagon.com" target="_blank"
+                    title="Build Better UI, Faster">ThemeWagon</a>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var
+                direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                    800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var
+                    $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var
+                        currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').
+                        siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+    </script>
+
+    <script>
+        let date = new Date();
+        let currYear = date.getFullYear(),
+            currMonth = date.getMonth();
+        const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+
+        let totalNum = 0; //총원
+        let attNum = 0;   // 출석인원
+        let absNum = 0;    // 결석인원
+
+        const currentDate = document.querySelector('.current-date');
+        const daysTag = document.querySelector('.days');
+        let liTag = '';
+
+
+
+        const renderCalendar = () => {
+            currentDate.innerHTML = `${currYear}년 ${months[currMonth]}`;
+            let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
+
+            liTag = ''; // liTag 초기화
+
+            let firstDayofMonth = new Date(currYear, currMonth, 1).getDay();
+            let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
+            let lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate();
+
+            for (let i = firstDayofMonth; i > 0; i--) {
+                liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+            }
+
+            for (let i = 1; i <= lastDateofMonth; i++) {
+                let key = `${currYear}년${currMonth + 1}월${i}일`;
+                getLocal(key);
+                let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? 'active' : '';
+                if(totalNum>0)  {
+                    liTag += `<li class="${isToday}"><button class="dateBtn" style="height:25px" data-value="${i}">${i}</button><div style="text-align: center;"><button class="updatebtn" style="border: solid 1px black;">총원: ${totalNum}명</button></div><div style="text-align: center;">출석: ${attNum}명</div><div style="text-align: center; color: red;">결석: ${absNum}명</div></li>`;
+                }else{
+                    liTag += `<li class="${isToday}"><button class="dateBtn" style="height:25px">${i}</button><div style="text-align: left;">&nbsp;</div><div style="text-align: left;">&nbsp;</div><div style="text-align: left; color: red;">&nbsp;</div></li>`;
+                }
+            }
+
+            for (let i = lastDayofMonth; i < 6; i++) {
+                liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+            }
+            daysTag.innerHTML = liTag;
+            const dateBtns = document.querySelectorAll(".dateBtn");
+            dateBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 버튼 값과 현재 월을 쿠키에 저장
+
+                    document.cookie = `btnValue=${btn.innerText}`;
+                    document.cookie = `currMonth=${months[currMonth]}`;
+                    document.cookie = `currYear=${currYear}`;
+
+                    // 새 창 열기
+                    window.open("attendance-m.html", "", "width=1200,height=1000");
+                });
+            });
+
+            const updatebtn = document.querySelectorAll(".updatebtn");
+            updatebtn.forEach(update =>{
+                update.addEventListener('click',()=>{
+                    const btnValue = event.target.closest("li").querySelector(".dateBtn").getAttribute("data-value");
+                    document.cookie = `upbtnValue=${btnValue}`;
+                    document.cookie = `upcurrMonth=${months[currMonth]}`;
+                    document.cookie = `upcurrYear=${currYear}`;
+
+                    window.open("update-att.html","","width=1200,height=1000");
+                })
+            });
+        };
+        renderCalendar();
+
+        const leftbtn = document.getElementById("leftbtn");
+        const rightbtn = document.getElementById("rightbtn");
+        leftbtn.addEventListener('click', () => {
+            currMonth--;
+            if (currMonth < 0) {
+                currMonth = 11;
+                currYear--;
+            }
+            renderCalendar();
+        });
+        rightbtn.addEventListener('click', () => {
+            currMonth++;
+            if (currMonth > 11) {
+                currMonth = 0;
+                currYear++;
+            }
+            renderCalendar();
+        });
+
+        function getLocal(key) {
+            let checkAttend = JSON.parse(localStorage.getItem(key));
+            totalNum = 0;// 총원 초기화
+            attNum = 0; // 출석 초기화
+            absNum = 0; // 결석 초기화
+            if (checkAttend !== null) {
+                let attendInfo = checkAttend.attend;
+                totalNum = attendInfo.length;
+                for (let i = 0; i < attendInfo.length; i++) {
+                    if (attendInfo[i].att) {
+                        attNum++;
+                    } else {
+                        absNum++;
+                    }
+                }
+
+            }
+        }
+
+        const stuListWeb = document.getElementById('stuListWeb');
+        stuListWeb.addEventListener('click',function(){
+            window.open("user-info.html","","width=1200,height=1000");
+        })
+
+        const jobAdd = document.querySelector('#jobAdd');
+        jobAdd.addEventListener('click',function(){
+            window.open("jobAdd.html","","width=1200,height=1000");
+        })
+
+
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 페이지가 로드되면 실행될 코드
+
+            // sessionStorage에서 로그인 정보 가져오기
+        const isLoggedIn = sessionStorage.getItem("login");
+        if (isLoggedIn) {
+            const userInfo = JSON.parse(isLoggedIn);
+            const userName = userInfo.name;
+            const userGreeting = document.getElementById("userGreeting");
+
+            // 로그인, 회원가입 링크 숨기기
+            const loginLink = document.getElementById("loginLink");
+            const signupLink = document.getElementById("signupLink");
+            loginLink.style.display = "none";
+            signupLink.style.display = "none";
+
+            userGreeting.style.display = "inline-block";
+            userGreeting.innerHTML = `<span style="color:white; font-weight: bold;">${userName}님</span>`;
+
+            // 마이페이지 링크 표시
+            const mypageLink = document.getElementById("mypageLink");
+            mypageLink.style.display = "inline-block";
+            mypageLink.innerHTML = "<a href='mypage-m.html' style='color: white; text-decoration: none;'>마이페이지</a>";
+            //로그아웃 링크 표시
+            const logoutLink = document.getElementById("logoutLink");
+            logoutLink.style.display = "inline-block";
+            logoutLink.innerHTML = "<a href='#'; style='color: white; text-decoration: none;'>로그아웃</a>";
+            // 로그아웃 기능
+            logoutLink.addEventListener("click", function(){
+            sessionStorage.clear();
+            window.location.href = "index.html";
+            })
+        }
+        });
+    </script>
+</body>
+
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <button id="dm">멤버 더미넣기</button>
+        <button id="noti">공지사항 더미넣기</button>
+        <button id="community">커뮤니티 더미넣기</button>
+        <button id="companies">회사 더미넣기</button>
+        <button id="dl">로컬삭제</button>
+        <script>
+            const dm = document.querySelector('#dm');
+            const noti = document.querySelector('#noti');
+            const community = document.querySelector('#community');
+            const companies = document.querySelector('#companies')
+            const dl = document.querySelector('#dl');
+
+            companies.addEventListener('click', function(){
+                fetch('./json/companies.json')
+                .then((response)=> response.json())
+                .then((comData) =>{
+                    localStorage.setItem('companies',JSON.stringify(comData));
+                    console.log('companies JSON 파일을 localStorage에 저장했습니다.');
+                    console.log(localStorage.getItem('companies'));
+                })
+                .catch((error) => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            })
+
+            dm.addEventListener('click', function () {
+                fetch('./json/member.json')
+                    .then((response) => response.json())
+                    .then((memData) => {
+                        // 가져온 JSON 데이터를 localStorage에 저장
+                        localStorage.setItem('member', JSON.stringify(memData));
+                        console.log('Member JSON 파일을 localStorage에 저장했습니다.');
+                        console.log(localStorage.getItem('member'));
+                    })
+                    .catch((error) => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            });
+
+            noti.addEventListener('click', function () {
+                fetch('./json/notice.json')
+                    .then((response) => response.json())
+                    .then((notData) => {
+                        localStorage.setItem('notice', JSON.stringify(notData));
+                        console.log('notice JSON파일을 localStorage에 저장했습니다.');
+                        console.log(localStorage.getItem('notice'));
+                    })
+                    .catch((error) => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            });
+
+            community.addEventListener('click', function () {
+                fetch('./json/community.json')
+                .then((response) => response.json())
+                .then((comData) => {
+                    localStorage.setItem('community', JSON.stringify(comData));
+                    console.log('comunity json파일을 localStorage에 저장했습니다.');
+                    console.log(localStorage.getItem('community'));
+                });
+                fetch('./json/communityComment.json')
+                .then((res) => res.json())
+                .then((commData)=>{
+                    localStorage.setItem("communityComment", JSON.stringify(commData));
+                    console.log('communityComment 파일을 localStorage에 저장했습니다.');
+                })
+                fetch('./json/commentCount.json')
+                .then((res) => res.json())
+                .then((commData)=>{
+                    localStorage.setItem("commentCount", JSON.stringify(commData));
+                    console.log('commentCount 파일을 localStorage에 저장했습니다.');
+                })
+                .catch((error)=>{
+                    console.error('There was a problem with the fetch operation:', error);
+                })
+            });
+
+            dl.addEventListener('click', function () {
+                localStorage.clear();
+                console.log(`로컬 삭제 완료`);
+                console.log(localStorage.getItem('member'));
+            });
+        </script>
+    </body>
+</html>

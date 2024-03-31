@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+  <title>Daum IT-Mypage</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+  <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+</head>
+
+<body>
+
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li id="loginLink"><a href="login.html">로그인</a></li>
+              <li id="signupLink"><a href="signup.html">회원가입</a></li>
+              <li id="userGreeting" style="display: none;"></li>
+              <li id="mypageLink" style="display: none;"><a href="mypage-m.html">마이페이지</a></li>
+              <li id="logoutLink" style="display: none">로그아웃</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index-m.html" class="logo" style="font-size: 46px;">
+              Daum IT
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="index-m.html">Home</a></li>
+              <li class="has-sub">
+                <a href="introduce-m.html">학원소개</a>
+                <ul class="sub-menu">
+                  <li><a href="introduce-m.html">학원 소개</a></li>
+                  <li><a href="teacher-m.html">교직원 소개</a></li>
+                  <li><a href="employment-m.html">취업현황</a></li>
+                </ul>
+              </li>
+              <li><a href="notice-m.html">공지사항</a></li>
+              <li>
+                <a href="community-m.html">커뮤니티</a>
+              </li>
+              <li class="has-sub">
+                <a href="FAQ-m.html">고객센터</a>
+                <ul class="sub-menu">
+                  <li><a href="FAQ-m.html">FAQ</a></li>
+                  <li><a href="counsel-m.html">문의 및 상담</a></li>
+                  <li><a href="location-m.html">오시는 길</a></li>
+                </ul>
+              </li>
+              <li><a href="calendar-m.html">출결조회</a></li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <!-- 배경이미지 설정단 -->
+      <source src="assets/images/course-video.mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div
+              style="background-color: #ffffff; height: 90%; color: #000000; text-align: center; margin-top: 240px; border-radius: 10px; display: flex; justify-content: center; align-items: center;">
+              <div style="width: 400px;">
+                <h6></h6>
+                <h1 style="padding: 15px;">My Page</h1>
+                <form action="#" name="signupFrm" id="signupF">
+                  <fieldset
+                    style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background-color: #ffffff; padding: 10px;">
+                    <div style="margin: 10px;">
+                      <div style="display: block; text-align: left;">아이디
+                        <div id="userid" style="width: 100%; padding: 5px; margin-bottom: 25px; text-align: center;"></div>
+                      </div>
+                    </div>
+                    <div style="margin: 10px;">
+                      <label for="password" style="display: block; text-align: left;">비밀번호 변경
+                        <input type="password" id="modified_password" name="password" placeholder="변경할 비밀번호를 입력하세요."
+                          style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                      </label>
+                    </div>
+                    <div style="margin: 10px;">
+                      <label for="confirm_password" style="display: block; text-align: left;">비밀번호 확인
+                        <input type="password" id="confirm_password" name="confirm_password"
+                          placeholder="위 비밀번호를 다시 한번 입력하세요."
+                          style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                      </label>
+                    </div>
+                    <div style="margin: 10px;">
+                      <div style="display: block; text-align: left;">이름
+                        <div id="username" style="width: 100%; padding: 5px; margin-bottom: 25px; text-align: center;">
+                      
+                        </div>
+                      </div>
+                    </div>
+                    <div style="margin: 10px;">
+                      <div style="display: block; text-align: left;">생년월일
+                        <div id="birth" style="width: 100%; padding: 5px; margin-bottom: 25px; text-align: center;"></div>
+                      </div>
+                    </div>
+                    <div style="margin: 10px;">
+                      <div style="display: block; text-align: left;">성별
+                        <div id="gender" style="width: 100%; padding: 5px; margin-bottom: 25px; text-align: center;"></div>
+                      </div>
+                    </div>
+                    <div style="margin: 10px;">
+                      <div style="display: block; text-align: left;">취업
+                        <div id="wor" style="width: 100%; padding: 5px; margin-bottom: 25px; text-align: center;"></div>
+                      </div>
+                    </div>
+
+
+
+                    <div id="check" style="margin: 30px; color: #ff0000;"></div>
+                    <button id="saveBtn"
+                      style="background-color: #ffffff; color: #000000; border: 2px solid #000000; font-size: 18px; font-weight: bold; padding: 10px 20px; cursor: pointer; transition: all 0.3s ease; border-radius: 5px; width: 100%; margin-top: 10px;">
+                      Save</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+    </div>
+  </section>
+
+
+  <!-- 기능 -->
+  <script>
+
+    const singup = document.querySelector("#signup");
+
+    
+    
+      const isLoggedIn = sessionStorage.getItem("login");
+      const userInfo = JSON.parse(isLoggedIn);
+      const username = userInfo.name;
+      const userId = userInfo.id;
+      const userpw = userInfo.pw
+      const userbirth = userInfo.birth;
+      const usergender = userInfo.gender;
+      let userworker = userInfo.worker_code;
+      let userpower = userInfo.power_code;
+      
+      
+      const useridDiv = document.querySelector("#userid");
+      const usernameDiv = document.querySelector('#username');
+      const userbirthDiv = document.querySelector('#birth');
+      const usergenderDiv = document.querySelector('#gender');
+      const userworDiv = document.querySelector('#wor');
+
+      useridDiv.innerHTML = `<p>${userId}</p>`
+      usernameDiv.innerHTML = `<p>${username}</p>`
+      userbirthDiv.innerHTML = `<p>${userbirth}</p>`
+      usergenderDiv.innerHTML = `<p>${usergender}</p>`
+      if(userworker==false){
+        userworDiv.innerHTML = `<p>비취업</p>`
+        
+      }else{
+        userworDiv.innerHTML = `<p>${userworker}</p>`
+      }
+      // useridDiv.innerHTML = `<p>${userId}</p>`
+      
+    // userLook();
+
+    //비밀번호 변경
+    let memObject = JSON.parse(localStorage.getItem('member'));
+
+    const modified_password = document.querySelector("#modified_password");
+    const confirm_password = document.querySelector("#confirm_password");
+
+    const saveBtn = document.querySelector("#saveBtn")
+
+
+    const loginInfo = JSON.parse(sessionStorage.getItem("login"));
+
+    saveBtn.addEventListener("click", function(){
+      for(const el of memObject){
+        if(loginInfo.id == el.id){
+          if(modified_password.value == confirm_password.value){
+            el.password = modified_password.value;
+            localStorage.setItem('member', JSON.stringify(memObject));
+            alert("비밀번호가 변경되었습니다.")
+            break;
+          }else{
+            alert("입력하신 비밀번호가 일치하지 않습니다.")
+          }
+        }
+      }
+    })
+
+
+
+  </script>
+
+
+
+
+
+
+  <!-- Scripts 단 기능등 -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/video.js"></script>
+  <script src="assets/js/slick-slider.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+      var
+        direction = section.replace(/#/, ''),
+        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos
+        },
+          800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+          $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+            currentId = $this.data('section'),
+            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+            siblings().removeClass('active');
+        }
+      });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // 로그인유지
+
+      // sessionStorage에서 로그인 정보 가져오기
+      const isLoggedIn = sessionStorage.getItem("login");
+        if (isLoggedIn) {
+            const userInfo = JSON.parse(isLoggedIn);
+            const userName = userInfo.name;
+            const userGreeting = document.getElementById("userGreeting");
+
+            // 로그인, 회원가입 링크 숨기기
+            const loginLink = document.getElementById("loginLink");
+            const signupLink = document.getElementById("signupLink");
+            loginLink.style.display = "none";
+            signupLink.style.display = "none";
+
+            userGreeting.style.display = "inline-block";
+            userGreeting.innerHTML = `<span style="color:white; font-weight: bold;">${userName}님</span>`;
+
+            // 마이페이지 링크 표시
+            const mypageLink = document.getElementById("mypageLink");
+            mypageLink.style.display = "inline-block";
+            mypageLink.innerHTML = "<a href='mypage-m.html' style='color: white; text-decoration: none;'>마이페이지</a>";
+            //로그아웃 링크 표시
+            const logoutLink = document.getElementById("logoutLink");
+            logoutLink.style.display = "inline-block";
+            logoutLink.innerHTML = "<a href='#'; style='color: white; text-decoration: none;'>로그아웃</a>";
+            // 로그아웃 기능
+            logoutLink.addEventListener("click", function(){
+              sessionStorage.clear();
+              window.location.href = "index-m.html";
+            })
+          }
+    });
+  </script>
+</body>
+
+</body>
+
+</html>

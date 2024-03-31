@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            max-width: 1900px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td.attendance {
+            background-color: #b3e6b3;
+        }
+
+        td.none-attendance {
+            background-color: #ffb3b3;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #acaInfo {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #acaInfo h4 {
+            margin-bottom: 10px;
+        }
+
+        .signature {
+            margin-top: 20px;
+        }
+
+        .signature span {
+            font-weight: bold;
+        }
+
+        .agreement {
+            margin-top: 20px;
+        }
+
+        .signature {
+            position: relative;
+            /* 위치 지정을 위해 상대적 위치 지정 */
+        }
+
+        .signature img {
+            position: absolute;
+            /* 이미지 위치를 절대적으로 지정 */
+            top: -15px;
+            /* 위쪽으로 30px 이동하여 텍스트 위에 위치 */
+            left: 50%;
+            /* 가운데 정렬 */
+            transform: translateX(-50%);
+            /* 가운데 정렬을 위한 이동 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h3 id="month"></h3>
+        <table id="userInfo">
+            <tr>
+                <th>성명</th>
+                <th>생년월일</th>
+                <th>총 일수</th>
+                <th>출석 일수</th>
+                <th>결석 일수</th>
+                <th>출석률</th>
+            </tr>
+            <tr id="info">
+                <!-- Data will be dynamically populated here -->
+            </tr>
+        </table>
+
+        <table id="date">
+            <!-- Calendar will be dynamically populated here -->
+        </table>
+
+        <div id="acaInfo">
+            <h4>학원 정보</h4>
+            <p>학원 이름: <span id="academyName">Daum It</span></p>
+            <div class="agreement">
+                <input type="checkbox" id="agreement" name="agreement">
+                <label for="agreement">개인정보 제공에 동의합니다.</label>
+            </div>
+            <div class="signature"> <img src="assets/images/stamp.png" alt=""
+                    style="width: 40px; height: 40px; ">
+                DAUM IT : ____________________
+            </div>
+            <div class="signature">
+                <span id="user"></span>: ____________________
+            </div>
+        </div>
+    </div>
+
+    <button onclick="window.print()">Print</button>
+
+    <script>
+        const info = document.querySelector("#info");
+        const login = JSON.parse(sessionStorage.getItem("login"));
+        const user = document.querySelector("#user");
+
+        user.innerText = login.name;
+
+        const attInfo = new URLSearchParams(window.location.search);
+        const letallAttDate = attInfo.get('letallAttDate');
+        const letattDate = attInfo.get('letattDate');
+        const letattAvr = attInfo.get('letattAvr');
+        const letnonAttDate = attInfo.get('letnonAttDate');
+
+        // window.onload = function () {
+        let getKey = localStorage.getItem("getKey");
+        let setMonth = localStorage.getItem("setMonth");
+        // 정보 입력하기
+
+
+        createCalendar(setMonth, getKey);
+        // }
+
+        function createCalendar(month, getKey) {
+            const table = document.querySelector("#date");
+            const daysInMonth = new Date(new Date().getFullYear(), month, 0).getDate(); // 현재 년도의 해당 월의 날짜 수 계산
+
+            let dayHeaders = "<tr><th>일</th>";
+            let dayOfWeekHeaders = "<tr><th>요일</th>";
+            let attendanceCells = "<tr><th>출석</th>";
+
+            let countAllAtt = 0;
+            let countAtt = 0;
+            let noneAtt = 0;
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                let key = getKey + i + "일";
+                let checkAttend = JSON.parse(localStorage.getItem(key));
+                if (checkAttend !== null) {
+                    let attInfo = checkAttend.attend;
+                    for (let k = 0; k < attInfo.length; k++) {
+                        if (login.num == attInfo[k].membernum) {
+
+                            if (attInfo[k].att == true) {
+
+                                const date = new Date(new Date().getFullYear(), month - 1, i);
+                                const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+                                dayHeaders += `<th>${i}</th>`;
+                                dayOfWeekHeaders += `<td>${dayOfWeek}</td>`;
+                                attendanceCells += "<td>O</td>";
+                                countAtt++;
+                            } else {
+
+                                noneAtt++;
+                                const date = new Date(new Date().getFullYear(), month - 1, i);
+                                const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+                                dayHeaders += `<th>${i}</th>`;
+                                dayOfWeekHeaders += `<td>${dayOfWeek}</td>`;
+                                attendanceCells += "<td>X</td>";
+                            }
+                        }
+                    }
+
+                } else {
+                    const date = new Date(new Date().getFullYear(), month - 1, i);
+                    const dayOfWeek = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+                    dayHeaders += `<th>${i}</th>`;
+                    dayOfWeekHeaders += `<td>${dayOfWeek}</td>`;
+                    attendanceCells += "<td></td>";
+                }
+
+
+            }
+            countAllAtt = countAtt + noneAtt;
+            let avrAtt = ((countAtt / countAllAtt) * 100).toFixed(2);
+            if (isNaN(avrAtt)) {
+                avrAtt = 0;
+            }
+
+            dayHeaders += "</tr>";
+            dayOfWeekHeaders += "</tr>";
+            attendanceCells += "</tr>";
+
+
+            const monthRow = document.querySelector("#month");
+            monthRow.innerText = `${getKey}출석부`;
+            table.innerHTML = dayHeaders + dayOfWeekHeaders + attendanceCells;
+
+
+            info.innerHTML = `<td>${login.name}</td>
+            <td>${login.birth}</td>
+            <td>${countAllAtt}</td>
+            <td>${countAtt}</td>
+            <td>${noneAtt}</td>
+            <td>${avrAtt}</td>`;
+        }
+
+
+    </script>
+</body>
+
+</html>

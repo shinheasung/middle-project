@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attPrint
+    </title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 id="chooseDate"></h2>
+    </div>
+    <div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>일</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>생년월일</th>
+                    <th>출석여부</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 여기에 추가적인 데이터 행을 추가할 수 있습니다 -->
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button>출력</button>
+    </div>
+
+    <script>
+        const userInfo = JSON.parse(sessionStorage.getItem('login'))
+    </script>
+
+
+</body>
+
+</html>

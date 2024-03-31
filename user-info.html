@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .search-container {
+            float: right;
+            margin-top: 20px;
+            margin-right: 20px;
+            padding: 20px;
+        }
+
+        .search-container input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+            border: solid 1px black;
+        }
+
+        .search-container button {
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            color: black;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .pagination button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .dropdown-menu a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="search-container">
+        <select id="searchFilter">
+            <option value="all">전체</option>
+            <option value="name">이름</option>
+            <option value="id">아이디</option>
+            <option value="num">회원번호</option>
+        </select>
+        <input type="text" placeholder="검색.." name="search" id="searchInput">
+        <button type="button" onclick="search()">검색</button>
+
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>회원번호</th>
+                    <th>이름</th>
+                    <th>회원아이디</th>
+                    <th>비밀번호</th>
+                    <th>성별</th>
+                    <th>생년월일</th>
+                    <th>취업상황</th>
+                    <th>권한</th>
+                    <th>가입일</th>
+                    <th>탈퇴여부</th>
+                </tr>
+            </thead>
+            <tbody id="stuListTb">
+
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+        let stuList = JSON.parse(localStorage.getItem('member'));
+        const stuListTb = document.getElementById("stuListTb");
+        const pagination = document.getElementById("pagination");
+
+        const itemsPerPage = 20;
+        let currentPage = 1;
+
+        function toggleWithdrawal(index) {
+            const stu = stuList[index];
+            const withdrawalState = stu.withdrawal ? "활성화" : "비활성화";
+            const confirmation = confirm(`해당 회원을 ${withdrawalState}시키시겠습니까?`);
+
+            if (confirmation) {
+                stu.withdrawal = !stu.withdrawal;
+                localStorage.setItem('member', JSON.stringify(stuList));
+
+                const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+                const searchFilter = document.getElementById("searchFilter").value;
+                const matchingRows = [];
+
+                stuList.forEach((stu, idx) => {
+                    let searchData = "";
+                    switch (searchFilter) {
+                        case "name":
+                            searchData = stu.name.toLowerCase();
+                            break;
+                        case "id":
+                            searchData = stu.id.toLowerCase();
+                            break;
+                        case "num":
+                            searchData = stu.num.toLowerCase();
+                            break;
+                        default:
+                            searchData = `${stu.num} ${stu.name} ${stu.id}`.toLowerCase();
+                    }
+                    if (searchData.includes(searchTerm)) {
+                        matchingRows.push(idx);
+                    }
+                });
+
+                updateTable(matchingRows);
+            }
+        }
+        function togglePermission(index) {
+            const stu = stuList[index];
+            const permissionState = stu.power_code ? "관리자" : "일반회원";
+            const confirmation = confirm(`해당 회원의 권한을 ${permissionState}으로 변경하시겠습니까?`);
+
+            if (confirmation) {
+                stu.power_code = !stu.power_code;
+
+                localStorage.setItem('member', JSON.stringify(stuList));
+
+                const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+                const searchFilter = document.getElementById("searchFilter").value;
+                const matchingRows = [];
+
+                stuList.forEach((stu, idx) => {
+                    let searchData = "";
+                    switch (searchFilter) {
+                        case "name":
+                            searchData = stu.name.toLowerCase();
+                            break;
+                        case "id":
+                            searchData = stu.id.toLowerCase();
+                            break;
+                        case "num":
+                            searchData = stu.num.toLowerCase();
+                            break;
+                        default:
+                            searchData = `${stu.num} ${stu.name} ${stu.id}`.toLowerCase();
+                    }
+                    if (searchData.includes(searchTerm)) {
+                        matchingRows.push(idx);
+                    }
+                });
+
+                updateTable(matchingRows);
+            }
+        }
+
+        function updateTable(rowIndexes) {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const displayedIndexes = rowIndexes.slice(startIndex, endIndex);
+            const updatedStuList = JSON.parse(localStorage.getItem('member'));
+
+            stuList = updatedStuList;
+
+            stuListTb.innerHTML = ''; // Clear previous content
+            if (displayedIndexes.length === 0) {
+                stuListTb.innerHTML = '<tr><td colspan="10">검색 결과가 없습니다.</td></tr>';
+            } else {
+                displayedIndexes.forEach(index => {
+                    const stu = stuList[index];
+                    let num = stu.num;
+                    let name = stu.name;
+                    let id = stu.id;
+                    let password = stu.password;
+                    let gender = stu.gender;
+                    let birth = stu.birth;
+                    let workerCode = stu.worker_code;
+                    let powerCode = stu.power_code;
+                    let createdate = stu.createdate;
+                    let withdrawal = stu.withdrawal;
+
+                    if (withdrawal == true) {
+                        withdrawal = "비 활성화";
+                    } else if (withdrawal == false) {
+                        withdrawal = "활성화"
+                    }
+                    if (workerCode == false) {
+                        workerCode = "비취업";
+                    };
+                    if (powerCode == true) {
+                        powerCode = "관리자";
+                    } else if (powerCode == false) {
+                        powerCode = "일반회원";
+                    };
+                    stuListTb.innerHTML += `<tr>
+                <td>${num}</td>
+                <td>${name}</td>
+                <td>${id}</td>
+                <td>${password}</td>
+                <td>${gender}</td>
+                <td>${birth}</td>
+                <td>${workerCode}</td>
+                <td><button onclick="togglePermission(${index})">${powerCode}</button></td>
+                <td>${createdate}</td>
+                <td><button onclick="toggleWithdrawal(${index})">${withdrawal}</button></td>
+            </tr>`;
+                });
+            }
+
+            renderPagination(rowIndexes);
+        }
+
+        function renderPagination(rowIndexes) {
+            const totalPages = Math.ceil(rowIndexes.length / itemsPerPage);
+            pagination.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    updateTable(rowIndexes);
+                });
+                if (i === currentPage) {
+                    button.classList.add('active');
+                }
+                pagination.appendChild(button);
+            }
+        }
+
+        function search() {
+            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            const searchFilter = document.getElementById("searchFilter").value;
+            const matchingRows = [];
+
+            stuList.forEach((stu, index) => {
+                let searchData = "";
+                switch (searchFilter) {
+                    case "name":
+                        searchData = stu.name.toLowerCase();
+                        break;
+                    case "id":
+                        searchData = stu.id.toLowerCase();
+                        break;
+                    case "num":
+                        searchData = stu.num.toLowerCase();
+                        break;
+                    default:
+                        searchData = `${stu.num} ${stu.name} ${stu.id}`.toLowerCase();
+                }
+                if (searchData.includes(searchTerm)) {
+                    matchingRows.push(index);
+                }
+            });
+
+            currentPage = 1;
+            updateTable(matchingRows);
+        }
+        window.onload = function () {
+            search();
+        };
+
+    </script>
+
+</body>
+
+</html>

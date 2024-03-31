@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        #searchArea {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #searchBtn {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #resultArea {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .name:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="searchArea">
+            <input type="text" name="keword">
+            <button type="button" id="searchBtn">검색</button>
+        </div>
+
+        <div id="resultArea" class="hidden">
+            <div>
+                회사 검색 결과 (<span id="resultSize"></span>)
+            </div>
+            <table id="resultList">
+                <tr>
+                    <th>NO</th>
+                    <th>회사명</th>
+                    <th>대표</th>
+                    <th>주 사업</th>
+                    <th>주소</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const comApi = JSON.parse(localStorage.getItem('companies'));
+        const searchBtn = document.querySelector('#searchBtn');
+        const resultArea = document.querySelector('#resultArea')
+
+        searchBtn.addEventListener('click', function () {
+            resultArea.classList.remove("hidden");
+            let keyword = document.querySelector("input").value.toLowerCase();
+            resultList.innerHTML = `<tr><th>NO</th><th>회사명</th><th>대표</th><th>주 사업</th><th>주소</th></tr>`
+
+            let name = comApi.name;
+            let representative = comApi.representative;
+            let business = comApi.business;
+            let address = comApi.address;
+
+            let count = 0;
+            comApi.forEach((company, index) => {
+                if (company.name.toLowerCase().includes(keyword) ||
+                    company.representative.toLowerCase().includes(keyword) ||
+                    company.business.toLowerCase().includes(keyword) ||
+                    company.address.toLowerCase().includes(keyword)) {
+                    // 검색어와 일치하는 경우 테이블에 회사 정보 추가
+                    resultList.innerHTML += `<tr><td>${index + 1}</td><td><div class="name" type="button">${company.name}</div></td><td>${company.representative}</td><td>${company.business}</td><td>${company.address}</td></tr>`;
+                    count++;
+                }
+                resultSize.innerText = `${count}건`;
+                const buttons = document.querySelectorAll(".name");
+                buttons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        if (confirm("회사를 선택하시겠습니까?")) {
+                            const selectName = button.innerText;
+                            const selectAddress = button.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.innerText;
+                            opener.document.getElementById('comName').value = selectName;
+                            opener.document.getElementById('address').value = selectAddress;
+                            window.close();
+                            return;
+                        }
+                    })
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>

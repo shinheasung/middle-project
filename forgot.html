@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+  <title>아이디, 비밀번호찾기</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+  <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+<style>
+  .findBtnn{
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <!-- <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p> -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"></a></li>
+              <li><a href="login.html">로그인</a></li>
+              <li><a href="signup.html">회원가입</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo" style="font-size: 46px;">
+              Daum IT
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="index.html">Home</a></li>
+              <li class="has-sub">
+                <a href="introduce-u.html">학원소개</a>
+                <ul class="sub-menu">
+                  <li><a href="introduce-u.html">학원 소개</a></li>
+                  <li><a href="teacher-u.html">교직원 소개</a></li>
+                  <li><a href="employment-u.html">취업현황</a></li>
+                </ul>
+              </li>
+              <li><a href="notice-u.html">공지사항</a></li>
+              <li>
+                <a href="community-u.html">커뮤니티</a>
+              </li>
+              <li class="has-sub">
+                <a href="FAQ-u.html">고객센터</a>
+                <ul class="sub-menu">
+                  <li><a href="FAQ-u.html">FAQ</a></li>
+                  <li><a href="counsel-u.html">문의 및 상담</a></li>
+                  <li><a href="location-u.html">오시는 길</a></li>
+                </ul>
+              </li>
+              <li><a href="calendar-u.html">출결조회</a></li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Main Banner Area Start ***** -->
+
+  <section class="section main-banner" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+      <!-- 배경이미지 설정단 -->
+      <source src="assets/images/course-video.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-overlay header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div
+              style="background-color: #ffffff; height: 650px; color: #000000; text-align: center; margin-top: 200px; border-radius: 10px;">
+              <h6></h6>
+              <h1 style="padding-top: 80px; padding-bottom: 30px;">Find ID/Password</h1>
+              <div style="margin: 0 auto; width: 300px;">
+                <form action="#">
+                  <fieldset
+                    style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background-color: #ffffff; padding: 20px;">
+                    <div>
+                      <label for="name" style="display: block; text-align: left;">이름
+                        <input type="text" id="name" name="name" placeholder="Name"
+                          style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                      </label>
+                    </div>
+                    <div>
+                      <label for="birth" style="display: block; text-align: left; padding-top: 5px;">생년월일
+                        <input type="text" id="birth" name="birth" placeholder="YYYYMMDD"
+                          style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                      </label>
+                    </div>
+                    <div id="check" style="margin: 30px; color: #ff0000;"></div>
+                    <button id="findBtn" type="button" class="findBtnn">FIND</button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts 단 기능등 -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/video.js"></script>
+  <script src="assets/js/slick-slider.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+      var
+        direction = section.replace(/#/, ''),
+        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos
+        },
+          800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+          $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+            currentId = $this.data('section'),
+            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+            siblings().removeClass('active');
+        }
+      });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
+
+
+  <script>
+
+    // 아이디 비밀번호 찾기
+    const name = document.querySelector("#name");
+    const birth = document.querySelector("#birth");
+    const firstDiv = document.querySelector("fieldset > div:first-child");
+    const secondDiv = document.querySelector("fieldset > div:nth-child(2)")
+    const check = document.querySelector("#check");
+    const findBtn = document.querySelector("#findBtn");
+
+    memObject = JSON.parse(localStorage.getItem('member'));
+
+    findBtn.addEventListener("click", function () {
+      let found = false; // 일치하는 멤버를 찾았는지 여부를 추적하기 위한 변수 추가
+      for (const el of memObject) {
+        if (el.name == name.value && el.birth == birth.value) {
+          firstDiv.innerHTML = `일치하는 회원이 있습니다.<div style="display: block; text-align: left;">ID
+            <div style="text-align: center;">${el.id}</div></div>`;
+          secondDiv.innerHTML = `<div style="display: block; text-align: left; margin-top: 20px">Password
+            <div style="text-align: center;">${el.password}</div></div>`;
+          check.textContent = "";
+          findBtn.textContent = `로그인 화면으로`
+          findBtn.setAttribute("onclick", "goLogin()")
+          found = true; // 일치하는 멤버를 찾았음을 표시
+          break; // 일치하는 멤버를 찾았으므로 반복문 종료
+        }
+      }
+      if (!found) {
+        check.textContent += `일치하는 회원이 없습니다.`;
+      }
+    });
+
+    function goLogin(){
+      window.location.href = 'login.html'
+    }
+
+
+
+
+
+  </script>
+
+</body>
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>회원가입</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+</head>
+
+<body>
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <!-- <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p> -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"></a></li>
+              <li><a href="login.html">로그인</a></li>
+              <li><a href="signup.html">회원가입</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo" style="font-size: 46px;">
+                        Daum IT
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="has-sub">
+                          <a href="introduce-u.html">학원소개</a>
+                          <ul class="sub-menu">
+                            <li><a href="introduce-u.html">학원 소개</a></li>
+                            <li><a href="teacher-u.html">교직원 소개</a></li>
+                            <li><a href="employment-u.html">취업현황</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="notice-u.html">공지사항</a></li>
+                        <li>
+                            <a href="community-u.html">커뮤니티</a>
+                        </li> 
+                        <li  class="has-sub">
+                          <a href="FAQ-u.html">고객센터</a>
+                          <ul class="sub-menu">
+                            <li><a href="FAQ-u.html">FAQ</a></li>
+                            <li><a href="counsel-u.html">문의 및 상담</a></li>
+                            <li><a href="location-u.html">오시는 길</a></li>
+                          </ul>
+                        </li> 
+                        <li><a href="calendar-u.html">출결조회</a></li> 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    
+    <section class="section main-banner" id="top" data-section="section1">
+        <video autoplay muted loop id="bg-video">
+            <!-- 배경이미지 설정단 -->
+            <source src="assets/images/course-video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div style="background-color: #ffffff; height: 1000px; color: #000000; text-align: center; margin-top: 240px; border-radius: 10px; display: flex; justify-content: center; align-items: center;">
+                        <div style="width: 400px;">
+                          <h6></h6>
+                          <h1 style="padding: 10px;">Sign Up</h1>
+                          <form action="#" name="signupFrm" id="signupF">
+                            <fieldset style="border: none; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); background-color: #ffffff; padding: 10px;">
+                              <div style="margin: 10px;">
+                                <label for="username" style="display: block; text-align: left;">아이디
+                                  <input type="text" id="username" name="username" placeholder="User_ID" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;" onblur="checkUsername()">
+                                </label>
+                                <span id="idW" style="color: red;"></span>
+                              </div>
+                              <div style="margin: 10px;">
+                                <label for="password" style="display: block; text-align: left;">비밀번호
+                                  <input type="password" id="password" name="password" placeholder="Password" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                                </label>
+                                <span id="pwW" style="color: red;"></span>
+                              </div>
+                              <div style="margin: 10px;">
+                                <label for="confirm_password" style="display: block; text-align: left;">비밀번호 확인
+                                  <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                                </label>
+                                <span id="cpwW" style="color: red;"></span>
+                              </div>
+                              <div style="margin: 10px;">
+                                <label for="name" style="display: block; text-align: left;">이름
+                                <input type="text" id="name" name="name" placeholder="Name" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                                </label>
+                                <span id="nW" style="color: red;"></span>
+                              </div>
+                              <div style="margin: 10px;">
+                                <label for="birth" style="display: block; text-align: left;">생년월일
+                                <input type="text" id="birth" name="birth" placeholder="YYYYMMDD" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                                </label>
+                                <span id="bW" style="color: red;"></span>
+                              </div>
+
+                              <div style="margin: 10px;">
+                                <label for="gender" style="display: block; text-align: left;">성별
+                                  <select id="gender" name="gender" style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #cccccc; border-radius: 5px; box-sizing: border-box;">
+                                    <option value="남성">남성</option>
+                                    <option value="여성">여성</option>
+                                    <option value="그 외 성별">그 외 성별</option>
+                                  </select>
+                                </label>
+                              </div>
+                          
+                              <button type="submit" id="signup" style="background-color: #ffffff; color: #000000; border: 2px solid #000000; font-size: 18px; font-weight: bold; padding: 10px 20px; cursor: pointer; transition: all 0.3s ease; border-radius: 5px; width: 100%; margin-top: 10px;" ">sign Up</button>
+                            </fieldset>
+                          </form>
+                          <div class="Forgot" style="text-align: center; margin-top: 20px;">
+                            <a href="#" style="text-decoration: none; color: #333333;">Already have an account? Log in here</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+          <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
+            <br>
+            Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+            <br>
+            Distibuted By: <a href="https://themewagon.com" target="_blank" title="Build Better UI, Faster">ThemeWagon</a>
+          </p>
+        </div>
+    </section>
+
+
+    <!-- 기능 -->
+    
+
+  
+    <!-- Scripts 단 기능등 -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var
+                direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                    800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var
+                    $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var
+                        currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').
+                        siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+    </script>
+
+    <script>
+      const memberL = JSON.parse(localStorage.getItem("member"))
+      let memCount = memberL.length;
+      function checkUsername() {
+        const username = document.getElementById('username').value;
+        const members = JSON.parse(localStorage.getItem('member')) || [];
+
+        // 회원 아이디 중복 체크
+        const isDuplicate = members.some(member => member.id === username);
+
+        if (isDuplicate) {
+          document.getElementById('idW').innerText = '이미 사용 중인 아이디입니다.';
+        } else {
+          document.getElementById('idW').innerText = '';
+        }
+      }
+
+      function saveToLocal(user) {
+        let members = JSON.parse(localStorage.getItem('member')) || [];
+        members.push(user);
+        localStorage.setItem('member', JSON.stringify(members));
+        console.log(memCount)
+      }
+
+      const signup = document.querySelector('#signup');
+      signup.addEventListener('click', function(e) {
+        memCount++;
+        
+        e.preventDefault();
+
+        // 회원 정보 입력 받기
+        const id = document.querySelector('#username').value;
+        const pw = document.querySelector('#password').value;
+        const checkPw = document.querySelector('#confirm_password').value;
+        const name = document.querySelector('#name').value;
+        const birth = document.querySelector('#birth').value;
+        const gender = document.querySelector('#gender').value;
+
+        // 회원 정보 유효성 검사
+        if (id.length < 5) {
+          document.getElementById('idW').innerText = '5자 이상의 영문 아이디를 입력하세요.';
+          return;
+        }
+        if (pw.length < 5) {
+          document.getElementById('pwW').innerText = '5~16자의 대/소문자, 숫자를 사용해주세요.';
+          return;
+        }
+        if (pw !== checkPw) {
+          document.getElementById('cpwW').innerText = '비밀번호를 올바르게 입력했는지 확인하세요.';
+          return;
+        }
+        if (name.length < 2) {
+          document.getElementById('nW').innerText = '올바른 이름을 입력해주세요.';
+          return;
+        }
+        if (birth.length < 8) {
+          document.getElementById('bW').innerText = '올바른 생년월일을 입력해주세요.';
+          return;
+        }
+
+        // 회원 정보 저장
+        const member = {
+          num: memCount,
+          id: id,
+          password: pw,
+          name: name,
+          gender: gender,
+          birth: birth,
+          worker_code: false,
+          power_code: false,
+          createdate: "20240321",
+          withdrawal: false
+        };
+        saveToLocal(member);
+
+        // 회원가입 완료 후 로그인 페이지로 이동
+        window.location.href = 'login.html';
+      });
+    </script>
+</body>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div>회사 검색</div>
+    <div>
+        <input type="text" name="comName" id="comName" readonly placeholder="회사 이름"><button id="popupBtn">회사검색</button>
+    </div>
+    <div>
+        <input type="text" name="address" id="address" readonly placeholder="회사 주소" style="width: 285px;">
+    </div>
+    <div>
+        <button id="registerBtn">등록</button>
+        <button id="cancelBtn">취소</button>
+    </div>
+
+    <script>
+
+
+        const butMem = new URLSearchParams(window.location.search);
+
+        // 쿼리 매개변수로부터 학생 정보를 가져옵니다.
+        const studentNum = butMem.get('num');
+        const studentName = butMem.get('name');
+        const studentId = butMem.get('id');
+        const studentWorkerCode = butMem.get('workerCode');
+
+
+        const popupBtn = document.querySelector('#popupBtn');
+        const registerBtn = document.querySelector('#registerBtn');
+        const cancelBtn = document.querySelector('#cancelBtn');
+        let memList = JSON.parse(localStorage.getItem('member'));
+
+
+        popupBtn.addEventListener('click', function () {
+            window.open("comApi.html", "", "width=500, hight=300")
+        })
+
+        registerBtn.addEventListener('click', function () {
+            const studentData = memList.find(student => student.num == studentNum);
+            const comName = document.querySelector('#comName').value;
+
+            if (studentData) {
+                studentData.worker_code = comName;
+            }
+
+            localStorage.setItem('member', JSON.stringify(memList));
+
+            alert('취업 등록이 완료되었습니다.');
+            window.opener.location.reload();
+            window.close();
+        });
+
+        cancelBtn.addEventListener('click', function () {
+            window.close();
+        });
+    </script>
+</body>
+
+</html>

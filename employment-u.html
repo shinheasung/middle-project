@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Template Mo" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+
+    <title>Daum IT-학원소개</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/lightbox.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+</head>
+
+<body>
+    <!-- Sub Header -->
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="left-content">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="right-icons">
+                        <ul>
+                            <li id="loginLink"><a href="login.html">로그인</a></li>
+                            <li id="signupLink"><a href="signup.html">회원가입</a></li>
+                            <li id="userGreeting" style="display: none;"></li>
+                            <li id="mypageLink" style="display: none;"><a href="mypage-u.html">마이페이지</a></li>
+                            <li id="logoutLink" style="display: none">로그아웃</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo" style="font-size: 46px;">
+                            Daum IT
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="has-sub">
+                                <a href="introduce-u.html" class="active">학원소개</a>
+                                <ul class="sub-menu">
+                                    <li><a href="introduce-u.html">학원 소개</a></li>
+                                    <li><a href="teacher-u.html">교직원 소개</a></li>
+                                    <li><a href="employment-u.html">취업현황</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="notice-u.html">공지사항</a></li>
+                            <li>
+                                <a href="community-u.html">커뮤니티</a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="FAQ-u.html">고객센터</a>
+                                <ul class="sub-menu">
+                                    <li><a href="FAQ-u.html">FAQ</a></li>
+                                    <li><a href="counsel-u.html">문의 및 상담</a></li>
+                                    <li><a href="location-u.html">오시는 길</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="calendar-u.html">출결조회</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <section class="heading-page header-text" id="top" style="background-image: url(assets/images/hd3.png);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <h6>Get all details</h6> -->
+                    <h6>내일을 향해 나아가는 Daum IT</h6>
+                    <h2>취업 현황</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="meetings-page" id="meetings">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="filters">
+                                <ul>
+                                    <li id="introAca">학원 소개</li>
+                                    <li id="introTchr">교직원 소개</li>
+                                    <li id="introEmp" class="active">취업 현황</li>
+                                </ul>
+                            </div>
+
+                            <div class="meeting-single-item">
+                                <div class="down-content" style="border-radius: 20px">
+                                    <h4>취업 현황</h4>
+                                    <p>최근 5년 이내 취업률 현황 통계</p>
+                                    <canvas id="myChart" width="600" height="120"></canvas>
+                                    <div class="row" style="margin-top: 28px">
+                                        <div class="col-lg-4">
+                                            <div class="hours" id="first" style="text-align: center">
+                                                <h5></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4" style="text-align: center">
+                                            <div class="location" id="second">
+                                                <h5>취업 성공을 축하드립니다.</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="book now" id="third" style="text-align: center">
+                                                <h5></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>
+                Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.
+                <br />
+                Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                <br />
+                Distibuted By:
+                <a href="https://themewagon.com" target="_blank" title="Build Better UI, Faster">ThemeWagon</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- chart.js -->
+    <script>
+        const member = JSON.parse(localStorage.getItem("member"))
+        const getJob = [];
+        member.forEach(e=>{
+            if(!(e.worker_code ==false)){
+                getJob.push(e)
+            }
+        })
+        const percentageJob = ((getJob.length / member.length) *100).toFixed(1)
+        
+        let myCt = document.getElementById('myChart');
+        let myChart = new Chart(myCt, {
+            type: 'bar',
+            data: {
+                labels: ['2020년 (72.5%)', '2021년 (78.2%)', '2022년 (84.6%)', `2023년 (${percentageJob}%)`],
+                datasets: [
+                    {
+                        label: '전체 교육과정 원생',
+                        data: [135, 124, 130, member.length],
+                        backgroundColor: '#00C7E2',
+                        maxBarThickness: 90,
+                    },
+                    {
+                        label: '취업 성공',
+                        data: [98, 97, 110, getJob.length],
+                        backgroundColor: '#FF7DA8',
+                        maxBarThickness: 90,
+                    },
+                ],
+            },
+        });
+    </script>
+
+    <script>
+        addEventListener('DOMContentLoaded', function () {
+            const memeber = JSON.parse(localStorage.getItem("member"));
+            const filtered = memeber.filter(function(stu){
+                return !(stu.worker_code == false);
+            });
+            display(filtered);
+        });
+
+        // 흩뿌리기
+        const firstDiv = document.querySelector('#first');
+        const secondDiv = document.querySelector('#second');
+        const thirdDiv = document.querySelector('#third');
+        function display(json) {
+            for (let i = 0; i < 5; i++) {
+                const maskedName = maskName(json[i].name);
+                firstDiv.innerHTML += `<p>${maskedName}, &nbsp; ${json[i].worker_code}</p>`;
+            }
+            for (let i = 5; i < 10; i++) {
+                const maskedName = maskName(json[i].name);
+                secondDiv.innerHTML += `<p>${maskedName}, &nbsp; ${json[i].worker_code}</p>`;
+            }
+            for (let i = 10; i < 15; i++) {
+                const maskedName = maskName(json[i].name);
+                thirdDiv.innerHTML += `<p>${maskedName}, &nbsp; ${json[i].worker_code}</p>`;
+            }
+        }
+
+        // 필터링
+        function maskName(name) {
+            const [surname, givenName] = name.split('');
+            return `${surname}**`;
+        }
+    </script>
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate(
+                    {
+                        scrollTop: reqSectionPos,
+                    },
+                    800
+                );
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+
+        // 메뉴바 이동(li태그에 id 주기)
+        const introAca = document.querySelector('#introAca');
+        const introTchr = document.querySelector('#introTchr');
+        const introEmp = document.querySelector('#introEmp');
+
+        introAca.addEventListener('click', function () {
+            window.location.href = 'introduce-u.html';
+        });
+        introTchr.addEventListener('click', function () {
+            window.location.href = 'teacher-u.html';
+        });
+        introEmp.addEventListener('click', function () {
+            window.location.href = 'employment-u.html';
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 로그인유지
+
+            // sessionStorage에서 로그인 정보 가져오기
+            const isLoggedIn = sessionStorage.getItem('login');
+            if (isLoggedIn) {
+                const userInfo = JSON.parse(isLoggedIn);
+                const userName = userInfo.name;
+                const userGreeting = document.getElementById('userGreeting');
+
+                // 로그인, 회원가입 링크 숨기기
+                const loginLink = document.getElementById('loginLink');
+                const signupLink = document.getElementById('signupLink');
+                loginLink.style.display = 'none';
+                signupLink.style.display = 'none';
+
+                userGreeting.style.display = 'inline-block';
+                userGreeting.innerHTML = `<span style="color:white; font-weight: bold;">${userName}님</span>`;
+
+                // 마이페이지 링크 표시
+                const mypageLink = document.getElementById('mypageLink');
+                mypageLink.style.display = 'inline-block';
+                mypageLink.innerHTML =
+                    "<a href='mypage-u.html' style='color: white; text-decoration: none;'>마이페이지</a>";
+                //로그아웃 링크 표시
+                const logoutLink = document.getElementById('logoutLink');
+                logoutLink.style.display = 'inline-block';
+                logoutLink.innerHTML = "<a href='#'; style='color: white; text-decoration: none;'>로그아웃</a>";
+                // 로그아웃 기능
+                logoutLink.addEventListener('click', function () {
+                    sessionStorage.clear();
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

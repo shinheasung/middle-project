@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .memo-input {
+            width: 80%;
+            margin-right: 5px;
+        }
+
+        .memo-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .char-count {
+            font-size: 10px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="today-att">
+
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>아이디</th>
+                    <th style="width: 60px;">고유번호</th>
+                    <th><input type="checkbox" onclick="checkAllAttendances(this)">출석 여부</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody id="stuList">
+
+            </tbody>
+        </table>
+        <div style="text-align: right; margin: 20px 20px 0px 0px;">
+            <button id="saveAtt" onclick="saveAttendance()">수정</button>
+            <button id="closseWindow" onclick="closeWindow()">닫기</button>
+        </div>
+    </div>
+
+    <script>
+
+        let isChecked = false;
+
+        function checkAllAttendances(checkbox) { // 수정: 함수 인자로 checkbox 추가
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            isChecked = !isChecked;
+
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = isChecked;
+            });
+            checkbox.checked = isChecked; // 추가: 전달된 체크박스의 상태도 업데이트
+        }
+
+        const addH = document.getElementById("today-att");
+
+        window.onload = function () {
+            const btnValue = getCookie('upbtnValue');
+            const currMonth = getCookie('upcurrMonth');
+            const currYear = getCookie('upcurrYear');
+            addH.innerHTML = `<h2>${currYear}년 ${currMonth} ${btnValue}일 출석부</h2>`;
+            let key = `${currYear}년${currMonth}${btnValue}일`;
+
+            const memberData = JSON.parse(localStorage.getItem('member'));
+
+            // 데이터가 없다면 처리
+            if (!memberData || memberData.length === 0) {
+                console.error('No data found in local storage.');
+                return;
+            }
+
+            // 필터링하여 표시
+            const filteredStudents = memberData.filter(function (student) {
+                return student.worker_code === false && student.power_code === false && student.withdrawal === false;
+            });
+            displayStudents(filteredStudents, key);
+        };
+
+        // 쿠키에서 특정 이름의 쿠키 값
+        function getCookie(name) {
+            const cookieArray = document.cookie.split('; ');
+            for (let i = 0; i < cookieArray.length; i++) {
+                const cookiePair = cookieArray[i].split('=');
+                if (cookiePair[0] === name) {
+                    return cookiePair[1];
+                }
+            }
+            return null;
+        }
+
+
+        function displayStudents(students, key) {
+            let i = 1;
+            let checkAttend = JSON.parse(localStorage.getItem(key));
+            let attendInfo = checkAttend.attend;
+            students.forEach(function (student, index) {
+                let memo = attendInfo[i - 1].memo
+                let isChecked = attendInfo[i - 1].att; // 출석 여부에 따라 checkbox 상태를 설정합니다.
+                let attendanceType = isChecked ? '출석' : '결석'; // 출석 여부에 따라 '출석' 또는 '결석'으로 설정합니다.
+                stuList.innerHTML +=
+                    `<tr>
+                <td>${i}</td> 
+                <td>${student.name}</td>
+                <td>${student.id}</td>
+                <td>${student.num}</td>
+                <td><span>${attendanceType}</span><input type="checkbox" ${isChecked ? 'checked' : ''} onclick="toggleCheckbox(this)" ></td>
+                <td>
+                    <input type="text" class="memo-input" maxlength="40" value="${memo}">
+                    <span class="char-count">0/40</span>
+                </td>
+            </tr>`;
+                i++;
+            });
+
+            const inputs = document.querySelectorAll('.memo-input');
+            const maxLength = 40;
+
+            inputs.forEach(function (input) {
+                const countElement = input.parentElement.querySelector('.char-count');
+                countCharacters(input, countElement, maxLength);
+            });
+
+        }
+        const stuList = document.getElementById("stuList");
+        function countCharacters(input, countElement, maxLength) {
+            input.addEventListener('input', function () {
+                const count = input.value.length;
+                countElement.textContent = count + '/' + maxLength;
+            });
+        }
+
+
+        function toggleCheckbox(checkbox) {
+            checkbox.setAttribute('data-checked', checkbox.checked);
+            updateLocalStorage();
+        }
+
+        function updateLocalStorage() {
+            const btnValue = getCookie('upbtnValue');
+            const currMonth = getCookie('upcurrMonth');
+            const currYear = getCookie('upcurrYear');
+            const date = `${currYear}년${currMonth}${btnValue}일`;
+
+            const jsonData = {
+                date: date,
+                attend: []
+            };
+            const checkboxes = document.querySelectorAll('tbody#stuList input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox, index) {
+                const studentRow = checkbox.parentElement.parentElement;
+                const studentNum = studentRow.querySelector('td:nth-child(4)').textContent; // 고유번호
+                const studentName = studentRow.querySelector('td:nth-child(2)').textContent; // 이름
+                const memoInput = studentRow.querySelector('.memo-input').value; // 비고 입력란 값
+                jsonData.attend.push({
+                    membernum: studentNum,
+                    name: studentName,
+                    att: checkbox.checked,
+                    memo: memoInput
+                });
+            });
+            const key = `${currYear}년${currMonth}${btnValue}일`;
+            localStorage.setItem(key, JSON.stringify(jsonData));
+        }
+
+        function saveMemo(button) {
+            const memoInput = button.previousElementSibling.previousElementSibling;
+            const memoValue = memoInput.value;
+        }
+
+        function saveAttendance() {
+            const btnValue = getCookie('upbtnValue');
+            const currMonth = getCookie('upcurrMonth');
+            const currYear = getCookie('upcurrYear');
+            const date = `${currYear}년${currMonth}${btnValue}일`;
+
+            const jsonData = {
+                date: date,
+                attend: []
+            };
+            const checkboxes = document.querySelectorAll('tbody#stuList input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox, index) {
+                const studentRow = checkbox.parentElement.parentElement;
+                const studentNum = studentRow.querySelector('td:nth-child(4)').textContent; // 고유번호
+                const studentName = studentRow.querySelector('td:nth-child(2)').textContent; // 이름
+                const memoInput = studentRow.querySelector('.memo-input').value; // 비고 입력란 값
+                jsonData.attend.push({
+                    membernum: studentNum,
+                    name: studentName,
+                    att: checkbox.checked,
+                    memo: memoInput
+                });
+            });
+            const key = `${currYear}년${currMonth}${btnValue}일`;
+            localStorage.setItem(key, JSON.stringify(jsonData));
+            window.opener.location.reload();
+            closeWindow();
+        }
+
+        function closeWindow() {
+            window.close();
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
