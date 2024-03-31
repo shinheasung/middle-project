@@ -1,0 +1,10 @@
+[
+    {
+        "power_code":true,
+        "power_value":"관리자"
+    },
+    {
+        "power_code":false,
+        "power_value":"사용자"
+    }
+]

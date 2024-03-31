@@ -1,0 +1,4 @@
+[
+    { "worker_code": true, "worker_value": "취업" },
+    { "worker_code": false, "worker_value": "미취업" }
+]
